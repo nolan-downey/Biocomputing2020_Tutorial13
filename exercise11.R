@@ -18,11 +18,12 @@ Ms = data.frame(time=1:timesteps,sim1=rep(0,timesteps))
 Ms[1,2:3]=1
 
 while(t <= timesteps) {
-  if(t <= 200) {
-     Ns$sim1[t] <- Ns$sim1[t-1] + rn*Ns$sim1[t-1]*(1-((Ns$sim1[t-1]+Ms$sim1[t-1])/K))
-     Ms$sim1[t] <- Ms$sim1[t-1] + rm*Ms$sim1[t-1]*(1-((Ms$sim1[t-1]+Ns$sim1[t-1])/K))
-    }
-  else if(t > 200) {
+  if (t < 200) {
+    Ns$sim1[t] <- Ns$sim1[t-1] + rn*Ns$sim1[t-1]*(1-((Ns$sim1[t-1]+Ms$sim1[t-1])/K))
+    Ms$sim1[t] <- Ms$sim1[t-1] + rm*Ms$sim1[t-1]*(1-((Ms$sim1[t-1]+Ns$sim1[t-1])/K))
+    
+  }
+  else {
     Ns$sim1[t] <- Ns$sim1[t-1] + rna*Ns$sim1[t-1]*(1-((Ns$sim1[t-1]+Ms$sim1[t-1])/K))
     Ms$sim1[t] <- Ms$sim1[t-1] + rma*Ms$sim1[t-1]*(1-((Ms$sim1[t-1]+Ns$sim1[t-1])/K))
   }
